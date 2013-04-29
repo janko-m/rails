@@ -40,4 +40,9 @@ class StoreTest < ActiveRecord::TestCase
     @john.remember_login = false
     assert_equal false, @john.remember_login
   end
+
+  test "updating multiple attributes stores the changes correctly" do
+    @john.color = "blue"
+    assert_equal({"settings" => [{:color => "black"}, {:color => "blue"}]}, @john.changes)
+  end
 end
